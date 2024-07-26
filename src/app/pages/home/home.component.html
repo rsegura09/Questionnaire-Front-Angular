@@ -1,0 +1,12 @@
+<div class="flex justify-center items-center">
+    <h1>Bienvenido a la página principal de App cuestionario</h1>
+</div>
+<div *ngIf="auth" class="bg-green-500 py-7">
+    <p>Felicidades ya iniciastes sesión</p>
+</div>
+<div *ngIf="!auth" class="bg-red-500 py-7">
+    <p>Aún no has iniciado sesión</p>
+</div>
+
+
+

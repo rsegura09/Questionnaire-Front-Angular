@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Personalogin } from 'src/model/personaLogin.model';
+import { Personalogin } from 'src/app/model/personaLogin.model';
 
 @Injectable({
   providedIn: 'root'
