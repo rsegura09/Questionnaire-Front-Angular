@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../service/auth/login.service';
-import { AuthService } from '../../service/auth/auth.service';
-import { Personalogin } from 'src/app/model/personaLogin.model';
 import { Router } from '@angular/router';
+import { Personalogin } from 'src/app/model/personaLogin.model';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,18 +20,28 @@ export class LoginComponent {
     this.formLogin = this.form.group({
       Correo: ['', [Validators.required, Validators.email]],
       Contrasenna: ['', Validators.required]
-    })
-    
+    });
   }
 
   login() {
-    if (this.formLogin.valid) {
-      const credenciales: Personalogin = this.formLogin.value;
-      console.log(credenciales);
+    if (this.formLogin.valid)
+    {
+      const credenciales: Personalogin = {
+        Email: this.formLogin.value.Correo,
+        Password: this.formLogin.value.Contrasenna
+      };
+
       this.loginService.verificarCredenciales(credenciales).subscribe({
-        next: (usuario: Personalogin) => {
-          this.router.navigate(['/home']);
-          this._authService.auth = true;
+        next: (response: any) => {
+          if (response.success) {
+            this.router.navigate(['/home']);
+            this._authService.auth = true;
+            console.log(response.value.id);
+            this._authService.Id = response.value.id;
+          } else {
+            this.loginError = 'Error: algo no está bien, intenta de nuevo.';
+            this.loginErrorSwitch = true;
+          }
         },
         error: (error) => {
           console.error(error);
@@ -45,7 +55,7 @@ export class LoginComponent {
     }
   }
 
-  hasErrors( controlName: string, errorType: string){
+  hasErrors(controlName: string, errorType: string) {
     return this.formLogin.get(controlName)?.hasError(errorType) && this.formLogin.get(controlName)?.touched;
   }
 }
