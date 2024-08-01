@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 import { UserResponse } from 'src/app/model/personaLogin.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
-  private baseURL = 'https://localhost:7289/api/v1/user'; // Asegúrate de que esta URL sea correcta
+  private baseURL = 'https://localhost:44321/api/v1/person'; // Asegúrate de que esta URL sea correcta
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Método para obtener información del usuario por ID
   getUserInfo(userId: string): Observable<UserResponse> {

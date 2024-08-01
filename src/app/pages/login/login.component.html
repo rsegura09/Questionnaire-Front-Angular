@@ -3,7 +3,7 @@
       <img class="mx-auto h-11 w-auto" src="https://companieslogo.com/img/orig/SWON.SW-2604e1a2.png?t=1683520280" alt="Your Company">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Iniciar sesión</h2>
     </div>
-    
+
     <div [formGroup]="formLogin" class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm shadow-md p-5 rounded">
       <p class="text-red-600 font-semibold bg-red-300 rounded text-center" *ngIf="loginErrorSwitch">{{loginError}}</p>
       <form class="space-y-6" action="#" method="POST">
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-  
+
         <div>
           <div class="flex items-center">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
@@ -31,7 +31,7 @@
             Contraseña requerida
           </div>
         </div>
-  
+
         <div>
           <button type="submit" (click)="login()" class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
             Inicia sesión

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../service/auth/login.service';
 import { Router } from '@angular/router';
-import { Personalogin } from 'src/app/model/personaLogin.model';
+import { Personlogin } from 'src/app/model/personaLogin.model';
 import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent {
   login() {
     if (this.formLogin.valid)
     {
-      const credenciales: Personalogin = {
+      const credenciales: Personlogin = {
         Email: this.formLogin.value.Correo,
         Password: this.formLogin.value.Contrasenna
       };
