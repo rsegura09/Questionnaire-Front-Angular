@@ -23,7 +23,5 @@ export class AuthService {
     this._auth = value;
   }
 
-  
-
 }
 
