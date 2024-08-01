@@ -1,4 +1,14 @@
-export interface Personalogin {
+export interface Person {
+  value: Value;
+  errors: any[];
+  success: boolean;
+}
+
+export interface Value {
+  id: string;
+}
+
+export interface Personlogin {
   Email: string;
   Password: string;
 }
@@ -15,7 +25,6 @@ export interface Questionnaire {
   title: string;
 }
 
-
 export interface User {
   nameUser?: string;
   name?: string;
@@ -28,5 +37,3 @@ export interface User {
   lastModifiedBy?: string | null;
   id?: string;
 }
-
-

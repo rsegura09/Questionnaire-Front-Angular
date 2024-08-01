@@ -22,5 +22,8 @@ export class AuthService {
   set auth(value: boolean) {
     this._auth = value;
   }
+
+  
+
 }
 
