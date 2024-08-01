@@ -18,7 +18,7 @@
 <div *ngIf="isAuthenticated">
   <p class="text-xl font-semibold text-center mb-6">Cuestionarios asignados</p>
   <div class="flex flex-wrap justify-center mt-10">
-    <div class="p-4 max-w-sm shadow-black" *ngFor="let questionnaire of userInfo?.questionnaires">
+    <div class="p-4 max-w-sm shadow-black" *ngFor="let surveys of userInfo?.surveys">
         <div class="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
             <div class="flex items-center mb-3">
                 <div
@@ -27,11 +27,11 @@
                       <path d="M6 9h12M6 15h12M6 21h12M3 4h18a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"></path>
                   </svg>
                 </div>
-                <h2 class="text-white dark:text-white text-lg font-medium">{{ questionnaire.title }}</h2>
+                <h2 class="text-white dark:text-white text-lg font-medium">{{ surveys.tittle }}</h2>
             </div>
             <div class="flex flex-col justify-between flex-grow">
                 <p class="leading-relaxed text-base text-white dark:text-gray-300">
-                  <strong>Fecha de ejecución: </strong>{{ questionnaire.executionDate }}
+                  <strong>Fecha de ejecución: </strong>{{ surveys.startDate }}
                 </p>
                 <a href="#" class="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center"> Ver más información
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

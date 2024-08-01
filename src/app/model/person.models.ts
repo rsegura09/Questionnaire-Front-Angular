@@ -1,41 +1,34 @@
-export interface Cuestionario {
-  value: Value;
-  errors: any[];
+export interface Result {
+  value:   Person;
+  errors:  Error[];
   success: boolean;
 }
-
-export interface Value {
-  items: Item[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
+export interface Error {
+  message:   string;
+  errorCode: string;
 }
 
-export interface Item {
-  userName: string;
-  name: string;
-  email: string;
-  isAdmin: boolean;
-  surveys: Survey[];
-  created: Date;
-  createdBy: null;
-  lastModified: Date;
-  lastModifiedBy: null;
-  id: string;
+export interface Person {
+  id:             string;
+  created:        Date;
+  createdBy:      string;
+  lastModified:   Date;
+  lastModifiedBy: string;
+  userName:       string;
+  name:           string;
+  email:          string;
+  isAdmin:        boolean;
+  surveys:        Survey[];
 }
 
 export interface Survey {
-  personId: string;
-  tittle: string;
-  description: string;
-  startDate: Date;
-  questions: any[];
-  person: null;
-  created: Date;
-  createdBy: null;
-  lastModified: Date;
-  lastModifiedBy: null;
-  id: string;
+  id:             string;
+  created:        Date;
+  createdBy:      string;
+  lastModified:   Date;
+  lastModifiedBy: string;
+  personId:       string;
+  tittle:         string;
+  description:    string;
+  startDate:      Date;
 }
