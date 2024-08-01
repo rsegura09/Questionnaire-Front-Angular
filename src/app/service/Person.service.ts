@@ -2,18 +2,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserResponse } from 'src/app/model/personaLogin.model';
+import { Result } from 'src/app/model/person.models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HomeService {
+export class PersonService {
   private baseURL = 'https://localhost:44321/api/v1/person'; // Asegúrate de que esta URL sea correcta
 
   constructor(private http: HttpClient) {}
 
   // Método para obtener información del usuario por ID
-  getUserInfo(userId: string): Observable<UserResponse> {
-    return this.http.get<UserResponse>(`${this.baseURL}/${userId}`);
+  getUserInfo(userId: string): Observable<Result> {
+    return this.http.get<Result>(`${this.baseURL}/${userId}`);
   }
 }

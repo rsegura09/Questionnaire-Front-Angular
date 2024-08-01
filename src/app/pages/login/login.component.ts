@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../service/auth/login.service';
 import { Router } from '@angular/router';
 import { Personlogin } from 'src/app/model/personaLogin.model';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -15,7 +14,7 @@ export class LoginComponent {
   loginError: string = '';
   formLogin: FormGroup;
 
-  constructor(private form: FormBuilder, private loginService: LoginService, private router: Router, private _authService: AuthService)
+  constructor(private form: FormBuilder, private router: Router, private _authService: AuthService)
   {
     this.formLogin = this.form.group({
       Correo: ['', [Validators.required, Validators.email]],
@@ -31,7 +30,7 @@ export class LoginComponent {
         Password: this.formLogin.value.Contrasenna
       };
 
-      this.loginService.verificarCredenciales(credenciales).subscribe({
+      this._authService.verificarCredenciales(credenciales).subscribe({
         next: (response: any) => {
           if (response.success) {
             this.router.navigate(['/home']);
