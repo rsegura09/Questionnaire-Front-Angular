@@ -9,9 +9,11 @@ exports.__esModule = true;
 exports.AuthService = void 0;
 var core_1 = require("@angular/core");
 var AuthService = /** @class */ (function () {
-    function AuthService() {
+    function AuthService(http) {
+        this.http = http;
         this._auth = false;
         this._Id = null;
+        this.baseURL = 'https://localhost:44321/';
     }
     Object.defineProperty(AuthService.prototype, "Id", {
         get: function () {
@@ -33,6 +35,9 @@ var AuthService = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    AuthService.prototype.verificarCredenciales = function (credenciales) {
+        return this.http.post(this.baseURL + "api/v1/login", credenciales);
+    };
     AuthService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

@@ -10,18 +10,19 @@ exports.HomeComponent = void 0;
 // home.component.ts
 var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(homeService, authService) {
-        this.homeService = homeService;
+    function HomeComponent(personService, authService) {
+        var _a;
+        this.personService = personService;
         this.authService = authService;
         this.userId = null;
         this.userInfo = null;
-        this.isAuthenticated = false;
+        this.isAuthenticated = (((_a = sessionStorage.getItem('isAuthenticated')) === null || _a === void 0 ? void 0 : _a.toString()) == "true");
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.userId = this.authService.Id; // Obtén el ID del usuario del servicio de autenticación
         if (this.userId) {
-            this.homeService.getUserInfo(this.userId).subscribe({
+            this.personService.getUserInfo(this.userId).subscribe({
                 next: function (response) {
                     _this.userInfo = response.value;
                     _this.isAuthenticated = response.success;
@@ -43,4 +44,3 @@ var HomeComponent = /** @class */ (function () {
     return HomeComponent;
 }());
 exports.HomeComponent = HomeComponent;
-;

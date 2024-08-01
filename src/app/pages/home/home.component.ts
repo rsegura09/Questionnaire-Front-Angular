@@ -7,14 +7,17 @@ import { PersonService } from 'src/app/service/Person.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   userId: string | null = null;
   userInfo: Result['value'] | null = null;
-  isAuthenticated: boolean = false;
+  isAuthenticated = (sessionStorage.getItem('isAuthenticated')?.toString() =="true");
 
-  constructor(private personService: PersonService, private authService: AuthService) { }
+  constructor(
+    private personService: PersonService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.userId = this.authService.Id; // Obtén el ID del usuario del servicio de autenticación
@@ -27,7 +30,7 @@ export class HomeComponent implements OnInit {
         error: (error) => {
           console.error('Error al obtener información del usuario:', error);
           this.isAuthenticated = false;
-        }
+        },
       });
     }
   }

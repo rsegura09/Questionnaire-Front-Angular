@@ -4,7 +4,8 @@
           <a routerLink="home" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Home</a>
       </div>
       <div>
-          <a routerLink="login" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Iniciar sesión</a>
+          <a routerLink="login" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300"
+          *ngIf="!isAuthenticated">Iniciar sesión</a>
       </div>
   </div>
 </header>

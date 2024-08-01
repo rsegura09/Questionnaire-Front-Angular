@@ -10,10 +10,13 @@ exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        var _a;
         this.title = 'CuestionarioLogin';
+        this.isAuthenticated = ((_a = sessionStorage.getItem('isAuthenticated')) === null || _a === void 0 ? void 0 : _a.toString()) == 'true';
     }
     AppComponent.prototype.ngOnInit = function () {
         sessionStorage.setItem('baseUrl', 'https://localhost:44321/api/v1');
+        sessionStorage.setItem('isAuthenticated', 'false');
     };
     AppComponent = __decorate([
         core_1.Component({

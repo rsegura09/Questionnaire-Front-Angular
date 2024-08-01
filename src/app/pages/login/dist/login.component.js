@@ -10,9 +10,8 @@ exports.LoginComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(form, loginService, router, _authService) {
+    function LoginComponent(form, router, _authService) {
         this.form = form;
-        this.loginService = loginService;
         this.router = router;
         this._authService = _authService;
         this.loginErrorSwitch = false;
@@ -29,7 +28,7 @@ var LoginComponent = /** @class */ (function () {
                 Email: this.formLogin.value.Correo,
                 Password: this.formLogin.value.Contrasenna
             };
-            this.loginService.verificarCredenciales(credenciales).subscribe({
+            this._authService.verificarCredenciales(credenciales).subscribe({
                 next: function (response) {
                     if (response.success) {
                         _this.router.navigate(['/home']);
@@ -38,6 +37,7 @@ var LoginComponent = /** @class */ (function () {
                         sessionStorage.setItem('personId', response.value.id);
                         sessionStorage.setItem('auth', 'true');
                         sessionStorage.setItem('isAdmin', response.value.isAdmin);
+                        sessionStorage.setItem('isAuthenticated', 'true');
                     }
                     else {
                         _this.loginError = 'Error: algo no está bien, intenta de nuevo.';
