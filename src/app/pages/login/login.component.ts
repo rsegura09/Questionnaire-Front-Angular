@@ -35,8 +35,11 @@ export class LoginComponent {
           if (response.success) {
             this.router.navigate(['/home']);
             this._authService.auth = true;
-            console.log(response.value.id);
             this._authService.Id = response.value.id;
+            sessionStorage.setItem('personId', response.value.id);
+            sessionStorage.setItem('auth', 'true');
+            sessionStorage.setItem('isAdmin', response.value.isAdmin);
+            sessionStorage.setItem('isAuthenticated','true');
           } else {
             this.loginError = 'Error: algo no está bien, intenta de nuevo.';
             this.loginErrorSwitch = true;
