@@ -24,7 +24,7 @@ export class SurveyService {
     return this.http.get<SurveyResponse>(`${this.baseUrl}`);
   }
 
-  deleteSurveyById(id: string): Observable<>{
-    return this.http.delete<>(`${this.baseUrl}/${id}`);
+  deleteSurveyById(id: string): Observable<SurveyResponse> {
+    return this.http.delete<SurveyResponse>(`${this.baseUrl}/${id}`);
   }
 }

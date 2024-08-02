@@ -45,7 +45,7 @@
           <div class="mt-4 flex space-x-2">
             <button (click)="deleteSurvey(survey.id)"
               class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Eliminar</button>
-            <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Gestionar</button>
+            <button routerLink="/managesurvey" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Gestionar</button>
           </div>
         </li>
         <li *ngIf="surveyList.length === 0">

@@ -5,12 +5,12 @@ import { SurveyService } from 'src/app/service/questionnaire/survey.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SurveyResponse,  Survey } from 'src/app/model/survey.models';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-createsurvey',
   templateUrl: './createsurvey.component.html',
   standalone: true,
-  imports: [DatePipe, ReactiveFormsModule, CommonModule],
+  imports: [DatePipe, ReactiveFormsModule, CommonModule, RouterModule],
   styleUrls: ['./createsurvey.component.css'],
 })
 export class CreatesurveyComponent implements OnInit {
@@ -56,13 +56,25 @@ export class CreatesurveyComponent implements OnInit {
     };
     this.addSurvey(data);
     this.resetForm();
-    this.getAllSurveys();
   }
 
   addSurvey(survey: ISurvey) {
     this._surveyService.postSurvey(survey).subscribe({
       next: (result) => {
-        console.log('Cuestionario agregado correctamente!');
+        console.log('Cuestionario agregado correctamente!', result);
+        this.getAllSurveys();
+      },
+      error: (err) => {
+        console.error('Error al agregar encuesta', err);
+      },
+    });
+  }
+
+  deleteSurvey(id: string) {
+    this._surveyService.deleteSurveyById(id).subscribe({
+      next: (result) => {
+        console.log('Escuesta agregadA correctamente!', result);
+        this.getAllSurveys();
       },
       error: (err) => {
         console.error('Error al agregar cuestionario', err);
@@ -70,11 +82,7 @@ export class CreatesurveyComponent implements OnInit {
     });
   }
 
-  deleteSurvey(id : String){
-    this._surveyService.
-  }
-
-  resetForm(){
+  resetForm() {
     this.surveyForm.reset();
   }
 }
