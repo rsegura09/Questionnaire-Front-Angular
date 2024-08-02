@@ -9,11 +9,14 @@ exports.__esModule = true;
 exports.CreatesurveyComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var common_1 = require("@angular/common");
+var forms_2 = require("@angular/forms");
 var CreatesurveyComponent = /** @class */ (function () {
     function CreatesurveyComponent(formBuilder, _surveyService) {
         this.formBuilder = formBuilder;
         this._surveyService = _surveyService;
         this.PERSON_ID = sessionStorage.getItem('personId');
+        this.surveyList = [];
         this.surveyForm = this.formBuilder.group({
             title: ['', forms_1.Validators.required],
             description: ['', forms_1.Validators.required],
@@ -21,6 +24,21 @@ var CreatesurveyComponent = /** @class */ (function () {
             startHour: ['', forms_1.Validators.required]
         });
     }
+    CreatesurveyComponent.prototype.ngOnInit = function () {
+        this.getAllSurveys();
+    };
+    CreatesurveyComponent.prototype.getAllSurveys = function () {
+        var _this = this;
+        this._surveyService.getAllSurveys().subscribe({
+            next: function (response) {
+                _this.surveyList = response.value.items;
+                console.log(_this.surveyList);
+            },
+            error: function (error) {
+                console.error('Error al obtener información de la encuesta:', error);
+            }
+        });
+    };
     CreatesurveyComponent.prototype.submitSurvey = function () {
         var date = this.surveyForm.value.startDate + 'T' + this.surveyForm.value.startHour;
         var data = {
@@ -29,22 +47,33 @@ var CreatesurveyComponent = /** @class */ (function () {
             description: this.surveyForm.value.description,
             startDate: new Date(date)
         };
-        this._surveyService.postSurvey(data);
+        this.addSurvey(data);
+        this.resetForm();
+        this.getAllSurveys();
     };
     CreatesurveyComponent.prototype.addSurvey = function (survey) {
         this._surveyService.postSurvey(survey).subscribe({
             next: function (result) {
-                console.log("Agregado correctamente");
+                console.log('Cuestionario agregado correctamente!');
             },
             error: function (err) {
-                console.error("Error al agregar cuestionario", err);
+                console.error('Error al agregar cuestionario', err);
             }
         });
+    };
+    CreatesurveyComponent.prototype.deleteSurvey = function (id) {
+        this._surveyService.
+        ;
+    };
+    CreatesurveyComponent.prototype.resetForm = function () {
+        this.surveyForm.reset();
     };
     CreatesurveyComponent = __decorate([
         core_1.Component({
             selector: 'app-createsurvey',
             templateUrl: './createsurvey.component.html',
+            standalone: true,
+            imports: [common_1.DatePipe, forms_2.ReactiveFormsModule, common_1.CommonModule],
             styleUrls: ['./createsurvey.component.css']
         })
     ], CreatesurveyComponent);

@@ -22,6 +22,9 @@ var SurveyService = /** @class */ (function () {
     SurveyService.prototype.getAllSurveys = function () {
         return this.http.get("" + this.baseUrl);
     };
+    SurveyService.prototype.deleteSurveyById = function (id) {
+        return this.http["delete"](this.baseUrl + "/" + id);
+    };
     SurveyService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

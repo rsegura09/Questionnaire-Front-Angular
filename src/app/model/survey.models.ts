@@ -5,7 +5,7 @@ export interface ISurvey {
   startDate: Date;
 }
 
-export interface Result {
+export interface SurveyResponse {
   value: Value;
   errors: any[];
   success: boolean;
@@ -21,7 +21,7 @@ export interface Value {
 }
 
 export interface Survey {
-  tittle: string;
+  title: string;
   description: string;
   startDate: Date;
   personId: string;
