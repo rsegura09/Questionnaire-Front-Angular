@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ISurvey } from 'src/app/model/survey.models';
-import { Result } from 'src/app/model/survey.models';
+import { SurveyResponse } from 'src/app/model/survey.models';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +13,18 @@ export class SurveyService {
   private baseUrl = sessionStorage.getItem('baseUrl') + `/survey`;
 
   postSurvey(survey: ISurvey): Observable<any> {
-    return this.http.post<Result>(`${this.baseUrl}`, survey);
-
+    return this.http.post<SurveyResponse>(`${this.baseUrl}`, survey);
   }
 
-  getSurveyById(id: string): Observable<Result> {
+  getSurveyById(id: string): Observable<SurveyResponse> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  getAllSurveys(): Observable<Result> {
-    return this.http.get<Result>(`${this.baseUrl}`);
+  getAllSurveys(): Observable<SurveyResponse> {
+    return this.http.get<SurveyResponse>(`${this.baseUrl}`);
+  }
+
+  deleteSurveyById(id: string): Observable<>{
+    return this.http.delete<>(`${this.baseUrl}/${id}`);
   }
 }

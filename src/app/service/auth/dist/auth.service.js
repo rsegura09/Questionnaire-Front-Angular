@@ -13,7 +13,7 @@ var AuthService = /** @class */ (function () {
         this.http = http;
         this._auth = false;
         this._Id = null;
-        this.baseURL = 'https://localhost:44321/';
+        this.baseURL = sessionStorage.getItem('baseUrl');
     }
     Object.defineProperty(AuthService.prototype, "Id", {
         get: function () {
@@ -36,7 +36,7 @@ var AuthService = /** @class */ (function () {
         configurable: true
     });
     AuthService.prototype.verificarCredenciales = function (credenciales) {
-        return this.http.post(this.baseURL + "api/v1/login", credenciales);
+        return this.http.post(this.baseURL + "/login", credenciales);
     };
     AuthService = __decorate([
         core_1.Injectable({
