@@ -8,10 +8,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatesurveyComponent } from './pages/createsurvey/createsurvey.component';
+import { ManageSurveyComponent } from './pages/manage-survey/manage-survey.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, ManageSurveyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

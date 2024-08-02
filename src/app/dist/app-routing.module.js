@@ -12,10 +12,12 @@ var router_1 = require("@angular/router");
 var home_component_1 = require("./pages/home/home.component");
 var login_component_1 = require("./pages/login/login.component");
 var createsurvey_component_1 = require("./pages/createsurvey/createsurvey.component");
+var manage_survey_component_1 = require("./pages/manage-survey/manage-survey.component");
 var routes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'createsurvey', component: createsurvey_component_1.CreatesurveyComponent }
+    { path: 'createsurvey', component: createsurvey_component_1.CreatesurveyComponent },
+    { path: 'managesurvey', component: manage_survey_component_1.ManageSurveyComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

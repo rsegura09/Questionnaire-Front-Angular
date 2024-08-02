@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var forms_2 = require("@angular/forms");
+var router_1 = require("@angular/router");
 var CreatesurveyComponent = /** @class */ (function () {
     function CreatesurveyComponent(formBuilder, _surveyService) {
         this.formBuilder = formBuilder;
@@ -49,21 +50,30 @@ var CreatesurveyComponent = /** @class */ (function () {
         };
         this.addSurvey(data);
         this.resetForm();
-        this.getAllSurveys();
     };
     CreatesurveyComponent.prototype.addSurvey = function (survey) {
+        var _this = this;
         this._surveyService.postSurvey(survey).subscribe({
             next: function (result) {
-                console.log('Cuestionario agregado correctamente!');
+                console.log('Cuestionario agregado correctamente!', result);
+                _this.getAllSurveys();
+            },
+            error: function (err) {
+                console.error('Error al agregar encuesta', err);
+            }
+        });
+    };
+    CreatesurveyComponent.prototype.deleteSurvey = function (id) {
+        var _this = this;
+        this._surveyService.deleteSurveyById(id).subscribe({
+            next: function (result) {
+                console.log('Escuesta agregadA correctamente!', result);
+                _this.getAllSurveys();
             },
             error: function (err) {
                 console.error('Error al agregar cuestionario', err);
             }
         });
-    };
-    CreatesurveyComponent.prototype.deleteSurvey = function (id) {
-        this._surveyService.
-        ;
     };
     CreatesurveyComponent.prototype.resetForm = function () {
         this.surveyForm.reset();
@@ -73,7 +83,7 @@ var CreatesurveyComponent = /** @class */ (function () {
             selector: 'app-createsurvey',
             templateUrl: './createsurvey.component.html',
             standalone: true,
-            imports: [common_1.DatePipe, forms_2.ReactiveFormsModule, common_1.CommonModule],
+            imports: [common_1.DatePipe, forms_2.ReactiveFormsModule, common_1.CommonModule, router_1.RouterModule],
             styleUrls: ['./createsurvey.component.css']
         })
     ], CreatesurveyComponent);
