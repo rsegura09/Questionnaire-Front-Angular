@@ -30,6 +30,8 @@ export class LoginComponent {
         Password: this.formLogin.value.Contrasenna
       };
 
+      console.log(credenciales);
+
       this._authService.verificarCredenciales(credenciales).subscribe({
         next: (response: any) => {
           if (response.success) {

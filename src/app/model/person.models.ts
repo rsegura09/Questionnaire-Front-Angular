@@ -28,7 +28,7 @@ export interface Survey {
   lastModified:   Date;
   lastModifiedBy: string;
   personId:       string;
-  tittle:         string;
+  title:         string;
   description:    string;
   startDate:      Date;
 }

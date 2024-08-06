@@ -42,3 +42,9 @@ export interface Question {
   survey: null;
   id: string;
 }
+
+export interface SurveyResponseById {
+  value: Survey;
+  errors: any[];
+  success: boolean;
+}

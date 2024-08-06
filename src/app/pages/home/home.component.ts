@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth/auth.service';
 import { Result } from 'src/app/model/person.models';
 import { PersonService } from 'src/app/service/Person.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.authService.Id; // Obtén el ID del usuario del servicio de autenticación
+    this.userId = this.authService.Id;
     if (this.userId) {
       this.personService.getUserInfo(this.userId).subscribe({
         next: (response: Result) => {
@@ -33,5 +35,9 @@ export class HomeComponent implements OnInit {
         },
       });
     }
+  }
+
+  navigateToSurvey(surveyId: string): void {
+    sessionStorage.setItem('currentSurveyId', surveyId);
   }
 }

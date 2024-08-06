@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ISurvey } from 'src/app/model/survey.models';
+import { ISurvey, SurveyResponseById } from 'src/app/model/survey.models';
 import { SurveyResponse } from 'src/app/model/survey.models';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class SurveyService {
     return this.http.post<SurveyResponse>(`${this.baseUrl}`, survey);
   }
 
-  getSurveyById(id: string): Observable<SurveyResponse> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  getSurveyById(id: string): Observable<SurveyResponseById> {
+    return this.http.get<SurveyResponseById>(`${this.baseUrl}/${id}`);
   }
 
   getAllSurveys(): Observable<SurveyResponse> {
