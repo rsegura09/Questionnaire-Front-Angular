@@ -34,7 +34,7 @@ export class CreatesurveyComponent implements OnInit {
   });
 
   getAllSurveys() {
-    this._surveyService.getAllSurveys().subscribe({
+    this._surveyService.getSurveys().subscribe({
       next: (response: SurveyResponse) => {
         this.surveyList = response.value.items;
         console.log(this.surveyList);
@@ -59,7 +59,7 @@ export class CreatesurveyComponent implements OnInit {
   }
 
   addSurvey(survey: SurveyRequest) {
-    this._surveyService.postSurvey(survey).subscribe({
+    this._surveyService.createSurvey(survey).subscribe({
       next: (result) => {
         console.log('Cuestionario agregado correctamente!', result);
         this.getAllSurveys();

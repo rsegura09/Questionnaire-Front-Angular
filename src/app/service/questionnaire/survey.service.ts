@@ -10,21 +10,25 @@ import { SurveyResponse } from 'src/app/model/survey.models';
 export class SurveyService {
   constructor(private http: HttpClient) {}
 
-  private baseUrl = sessionStorage.getItem('baseUrl') + `/survey`;
+  private surveyApiUrl = sessionStorage.getItem('baseUrl') + `/survey`;
 
-  postSurvey(survey: SurveyRequest): Observable<any> {
-    return this.http.post<SurveyResponse>(`${this.baseUrl}`, survey);
+  createSurvey(survey: SurveyRequest): Observable<any> {
+    return this.http.post<SurveyResponse>(`${this.surveyApiUrl}`, survey);
   }
 
   getSurveyById(id: string): Observable<SurveyResponseById> {
-    return this.http.get<SurveyResponseById>(`${this.baseUrl}/${id}`);
+    return this.http.get<SurveyResponseById>(`${this.surveyApiUrl}/${id}`);
   }
 
-  getAllSurveys(): Observable<SurveyResponse> {
-    return this.http.get<SurveyResponse>(`${this.baseUrl}`);
+  getSurveys(): Observable<SurveyResponse> {
+    return this.http.get<SurveyResponse>(`${this.surveyApiUrl}`);
   }
 
   deleteSurveyById(id: string): Observable<SurveyResponse> {
-    return this.http.delete<SurveyResponse>(`${this.baseUrl}/${id}`);
+    return this.http.delete<SurveyResponse>(`${this.surveyApiUrl}/${id}`);
   }
+
+
+
+
 }

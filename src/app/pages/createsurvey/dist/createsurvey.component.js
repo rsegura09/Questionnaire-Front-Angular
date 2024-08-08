@@ -30,7 +30,7 @@ var CreatesurveyComponent = /** @class */ (function () {
     };
     CreatesurveyComponent.prototype.getAllSurveys = function () {
         var _this = this;
-        this._surveyService.getAllSurveys().subscribe({
+        this._surveyService.getSurveys().subscribe({
             next: function (response) {
                 _this.surveyList = response.value.items;
                 console.log(_this.surveyList);
@@ -53,7 +53,7 @@ var CreatesurveyComponent = /** @class */ (function () {
     };
     CreatesurveyComponent.prototype.addSurvey = function (survey) {
         var _this = this;
-        this._surveyService.postSurvey(survey).subscribe({
+        this._surveyService.createSurvey(survey).subscribe({
             next: function (result) {
                 console.log('Cuestionario agregado correctamente!', result);
                 _this.getAllSurveys();

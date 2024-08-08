@@ -11,19 +11,19 @@ var core_1 = require("@angular/core");
 var SurveyService = /** @class */ (function () {
     function SurveyService(http) {
         this.http = http;
-        this.baseUrl = sessionStorage.getItem('baseUrl') + "/survey";
+        this.surveyApiUrl = sessionStorage.getItem('baseUrl') + "/survey";
     }
-    SurveyService.prototype.postSurvey = function (survey) {
-        return this.http.post("" + this.baseUrl, survey);
+    SurveyService.prototype.createSurvey = function (survey) {
+        return this.http.post("" + this.surveyApiUrl, survey);
     };
     SurveyService.prototype.getSurveyById = function (id) {
-        return this.http.get(this.baseUrl + "/" + id);
+        return this.http.get(this.surveyApiUrl + "/" + id);
     };
-    SurveyService.prototype.getAllSurveys = function () {
-        return this.http.get("" + this.baseUrl);
+    SurveyService.prototype.getSurveys = function () {
+        return this.http.get("" + this.surveyApiUrl);
     };
     SurveyService.prototype.deleteSurveyById = function (id) {
-        return this.http["delete"](this.baseUrl + "/" + id);
+        return this.http["delete"](this.surveyApiUrl + "/" + id);
     };
     SurveyService = __decorate([
         core_1.Injectable({
