@@ -9,11 +9,11 @@ import { SurveyService } from 'src/app/service/questionnaire/survey.service';
 @Component({
   selector: 'app-survey-solver',
   templateUrl: './survey-solver.component.html',
-  styleUrls: ['./survey-solver.component.css']
+  styleUrls: ['./survey-solver.component.css'],
 })
 export class SurveySolverComponent implements OnInit {
+  survey!: SurveyResponseById['value'];
   private PERSON_ID: string = sessionStorage.getItem('personId')!;
-  survey!: Survey;
   errorMessage: string | null = null;
   answeredQuestions: Map<string, { optionId: string, answerText: string }> = new Map();
   unansweredQuestions: { id: string, text: string }[] = [];
@@ -39,9 +39,10 @@ export class SurveySolverComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.errorMessage = 'No se pudo cargar el cuestionario. Inténtelo de nuevo más tarde.';
+          this.errorMessage =
+            'No se pudo cargar el cuestionario. Inténtelo de nuevo más tarde.';
           console.error('Error al obtener el cuestionario:', err);
-        }
+        },
       });
     } else {
       this.errorMessage = 'ID de cuestionario no encontrado.';
@@ -49,18 +50,21 @@ export class SurveySolverComponent implements OnInit {
   }
 
   private loadOptionsForQuestions(questions: Question[]): void {
-    questions.forEach(question => {
+    questions.forEach((question) => {
       this.optionsService.getOptions(question.id).subscribe({
         next: (response: OptionsResponse) => {
           if (response.success) {
             question.options = response.value.options;
           } else {
-            console.warn('Error al obtener opciones para la pregunta:', response.errors);
+            console.warn(
+              'Error al obtener opciones para la pregunta:',
+              response.errors
+            );
           }
         },
         error: (err) => {
           console.error('Error al obtener opciones para la pregunta:', err);
-        }
+        },
       });
     });
   }
