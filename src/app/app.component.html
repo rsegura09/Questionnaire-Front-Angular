@@ -1,14 +1,46 @@
 <header class="bg-slate-100 shadow-md px-4 py-2">
   <div class="container mx-auto flex justify-between items-center h-16">
-      <div>
-          <a routerLink="home" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Home</a>
-      </div>
-      <div>
-          <a routerLink="login" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300"
-          *ngIf="!isAuthenticated">Iniciar sesión</a>
-      </div>
+    <!-- Logo y enlaces de navegación -->
+    <div class="flex items-center">
+      <a routerLink="home" class="flex items-center text-slate-600 text-lg font-semibold hover:text-black transition duration-300">
+        <img src="https://companieslogo.com/img/orig/SWON.SW-2604e1a2.png?t=1683520280" alt="Logo" class="h-8 mr-2" />
+        Questionnaries<strong>SWO</strong>
+      </a>
+    </div>
+
+    <!-- Enlaces de navegación para pantallas grandes -->
+    <nav class="hidden md:flex space-x-4">
+      <a routerLink="home" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Home</a>
+      <a routerLink="about" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">About</a>
+      <a routerLink="contact" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Contact</a>
+      <a routerLink="services" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Services</a>
+    </nav>
+
+    <!-- Enlaces de autenticación -->
+    <div class="flex items-center space-x-4">
+      <a *ngIf="!isAuthenticated" routerLink="login" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Iniciar sesión</a>
+      <a *ngIf="isAuthenticated" (click)="logout()" class="text-slate-600 px-4 py-2 text-lg font-semibold hover:text-black transition duration-300">Logout</a>
+    </div>
+
+    <!-- Botón del menú móvil -->
+    <div class="md:hidden flex items-center">
+      <button (click)="toggleMenu()" class="text-slate-600 text-2xl focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú móvil -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-slate-100 shadow-md py-2">
+    <a routerLink="home" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">Home</a>
+    <a routerLink="about" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">About</a>
+    <a routerLink="contact" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">Contact</a>
+    <a routerLink="services" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">Services</a>
+    <a *ngIf="!isAuthenticated" routerLink="login" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">Iniciar sesión</a>
+    <a *ngIf="isAuthenticated" (click)="logout()" class="block px-4 py-2 text-lg font-semibold text-slate-600 hover:text-black transition duration-300">Logout</a>
   </div>
 </header>
-
 
 <router-outlet></router-outlet>

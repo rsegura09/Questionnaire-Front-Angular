@@ -7,11 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'CuestionarioLogin';
-  isAuthenticated =
-    sessionStorage.getItem('isAuthenticated')?.toString() == 'true';
+  isAuthenticated = false;
+  isMenuOpen = false;
 
   ngOnInit(): void {
+    // Configuración inicial
     sessionStorage.setItem('baseUrl', 'https://localhost:44321/api/v1');
+    this.isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+  }
+
+  login(): void {
+    this.isAuthenticated = true;
+    sessionStorage.setItem('isAuthenticated', 'true');
+  }
+
+  logout(): void {
+    this.isAuthenticated = false;
     sessionStorage.setItem('isAuthenticated', 'false');
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }
