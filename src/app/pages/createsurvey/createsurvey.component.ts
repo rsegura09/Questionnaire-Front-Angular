@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ISurvey } from 'src/app/model/survey.models';
+import { SurveyRequest } from 'src/app/model/survey.models';
 import { SurveyService } from 'src/app/service/questionnaire/survey.service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SurveyResponse,  Survey } from 'src/app/model/survey.models';
 import { RouterModule } from '@angular/router';
@@ -34,7 +34,7 @@ export class CreatesurveyComponent implements OnInit {
   });
 
   getAllSurveys() {
-    this._surveyService.getAllSurveys().subscribe({
+    this._surveyService.getSurveys().subscribe({
       next: (response: SurveyResponse) => {
         this.surveyList = response.value.items;
         console.log(this.surveyList);
@@ -48,7 +48,7 @@ export class CreatesurveyComponent implements OnInit {
   submitSurvey(): void {
     const date =
       this.surveyForm.value.startDate + 'T' + this.surveyForm.value.startHour;
-    const data: ISurvey = {
+    const data: SurveyRequest = {
       personId: this.PERSON_ID,
       title: this.surveyForm.value.title!,
       description: this.surveyForm.value.description!,
@@ -58,8 +58,8 @@ export class CreatesurveyComponent implements OnInit {
     this.resetForm();
   }
 
-  addSurvey(survey: ISurvey) {
-    this._surveyService.postSurvey(survey).subscribe({
+  addSurvey(survey: SurveyRequest) {
+    this._surveyService.createSurvey(survey).subscribe({
       next: (result) => {
         console.log('Cuestionario agregado correctamente!', result);
         this.getAllSurveys();
@@ -84,5 +84,9 @@ export class CreatesurveyComponent implements OnInit {
 
   resetForm() {
     this.surveyForm.reset();
+  }
+
+  sendSurveyToManageSurvey(survey: Survey) {
+    sessionStorage.setItem('survey', JSON.stringify(survey));
   }
 }

@@ -1,1 +1,69 @@
-<p>manage-survey works!</p>
+<div class="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+  <h1 class="text-3xl font-semibold mb-4">Editor de Encuesta</h1>
+
+  <!-- Detalles de la Encuesta -->
+  <div class="mb-6">
+    <label for="surveyTitle" class="block text-sm font-medium text-gray-700">Título de la Encuesta</label>
+    <input
+      id="surveyTitle"
+      type="text"
+      [(ngModel)]="survey.title"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      placeholder="Título de la encuesta"
+    />
+  </div>
+
+  <div class="mb-6">
+    <label for="surveyDescription" class="block text-sm font-medium text-gray-700">Descripción</label>
+    <textarea
+      id="surveyDescription"
+      [(ngModel)]="survey.description"
+      rows="4"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      placeholder="Descripción de la encuesta"
+    ></textarea>
+  </div>
+
+  <!-- Preguntas -->
+  <div>
+    <h2 class="text-2xl font-semibold mb-4">Preguntas</h2>
+    <div *ngFor="let question of questions; let i = index" class="mb-6">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Pregunta {{i + 1}}</label>
+        <input
+          type="text"
+          [(ngModel)]="question.text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Texto de la pregunta"
+        />
+      </div>
+
+      <!-- Opciones -->
+      <div class="mb-4">
+        <h3 class="text-lg font-medium mb-2">Opciones</h3>
+        <div *ngFor="let option of question.options; let j = index" class="flex items-center mb-2">
+          <input
+            type="text"
+            [(ngModel)]="option.text"
+            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Texto de la opción"
+          />
+          <button  class="ml-2 text-red-600 hover:text-red-900">
+            Eliminar
+          </button>
+        </div>
+        <button  class="mt-2 inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Agregar Opción
+        </button>
+      </div>
+
+      <button  class="mt-2 text-red-600 hover:text-red-900">
+        Eliminar Pregunta
+      </button>
+    </div>
+
+    <button  class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+      Agregar Pregunta
+    </button>
+  </div>
+</div>

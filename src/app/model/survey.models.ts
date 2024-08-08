@@ -1,4 +1,4 @@
-export interface ISurvey {
+export interface SurveyRequest {
   personId: string;
   title: string;
   description: string;
