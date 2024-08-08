@@ -28,6 +28,7 @@ var LoginComponent = /** @class */ (function () {
                 Email: this.formLogin.value.Correo,
                 Password: this.formLogin.value.Contrasenna
             };
+            console.log(credenciales);
             this._authService.verificarCredenciales(credenciales).subscribe({
                 next: function (response) {
                     if (response.success) {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PersonResponse, Personlogin } from 'src/app/model/personaLogin.model';
+import { PersonResponseLogin, Personlogin } from 'src/app/model/personaLogin.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,9 @@ export class AuthService {
     this._auth = value;
   }
 
-  verificarCredenciales(credenciales: Personlogin): Observable<PersonResponse> {
+  verificarCredenciales(
+    credenciales: Personlogin
+  ): Observable<PersonResponseLogin> {
     return this.http.post<any>(`${this.baseURL}/login`, credenciales);
   }
 }

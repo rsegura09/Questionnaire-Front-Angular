@@ -1,34 +1,35 @@
-export interface Result {
-  value:   Person;
-  errors:  Error[];
+
+//fd6fe9cd-fbb1-44ec-9a4a-45de05b144ed
+
+export interface PersonResponse {
+  value: Value;
+  errors: any[];
   success: boolean;
 }
-export interface Error {
-  message:   string;
-  errorCode: string;
-}
 
-export interface Person {
-  id:             string;
-  created:        Date;
-  createdBy:      string;
-  lastModified:   Date;
-  lastModifiedBy: string;
-  userName:       string;
-  name:           string;
-  email:          string;
-  isAdmin:        boolean;
-  surveys:        Survey[];
+export interface Value {
+  userName: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+  surveys: Survey[];
+  created: Date;
+  createdBy: null;
+  lastModified: Date;
+  lastModifiedBy: null;
+  id: string;
 }
 
 export interface Survey {
-  id:             string;
-  created:        Date;
-  createdBy:      string;
-  lastModified:   Date;
+  personId: string;
+  title: string;
+  description: string;
+  startDate: Date;
+  questions: any[];
+  person: null;
+  created: Date;
+  createdBy: string;
+  lastModified: Date;
   lastModifiedBy: string;
-  personId:       string;
-  title:         string;
-  description:    string;
-  startDate:      Date;
+  id: string;
 }

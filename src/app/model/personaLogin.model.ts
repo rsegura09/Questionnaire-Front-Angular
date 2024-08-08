@@ -1,4 +1,4 @@
-export interface PersonResponse {
+export interface PersonResponseLogin {
   value: Value;
   errors: any[];
   success: boolean;
@@ -7,6 +7,7 @@ export interface PersonResponse {
 export interface Value {
   id:      string;
   isAdmin: boolean;
+  name: string;
 }
 
 export interface Personlogin {
