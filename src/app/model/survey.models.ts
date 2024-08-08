@@ -44,7 +44,21 @@ export interface Question {
 }
 
 export interface SurveyResponseById {
-  value: Survey;
+  value: ValueSurveyById;
   errors: any[];
   success: boolean;
+}
+
+
+export interface ValueSurveyById {
+  title: string;
+  description: string;
+  startDate: Date;
+  personId: string;
+  questions: Question[];
+  created: Date;
+  createdBy: null;
+  lastModified: Date;
+  lastModifiedBy: null;
+  id: string;
 }

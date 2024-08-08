@@ -4,8 +4,8 @@ import { SurveyRequest } from 'src/app/model/survey.models';
 import { SurveyService } from 'src/app/service/questionnaire/survey.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SurveyResponse,  Survey } from 'src/app/model/survey.models';
 import { RouterModule } from '@angular/router';
+import { PersonResponse, Survey } from 'src/app/model/person.models';
 @Component({
   selector: 'app-createsurvey',
   templateUrl: './createsurvey.component.html',
@@ -23,7 +23,7 @@ export class CreatesurveyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllSurveys();
+    this.getSurveys();
   }
 
   surveyForm = this.formBuilder.group({
@@ -33,10 +33,10 @@ export class CreatesurveyComponent implements OnInit {
     startHour: ['', Validators.required],
   });
 
-  getAllSurveys() {
-    this._surveyService.getSurveys().subscribe({
-      next: (response: SurveyResponse) => {
-        this.surveyList = response.value.items;
+  getSurveys() {
+    this._surveyService.getSurveyByPersonId(this.PERSON_ID).subscribe({
+      next: (response: PersonResponse) => {
+        this.surveyList = response.value.surveys;
         console.log(this.surveyList);
       },
       error: (error) => {
@@ -62,7 +62,7 @@ export class CreatesurveyComponent implements OnInit {
     this._surveyService.createSurvey(survey).subscribe({
       next: (result) => {
         console.log('Cuestionario agregado correctamente!', result);
-        this.getAllSurveys();
+        this.getSurveys();
       },
       error: (err) => {
         console.error('Error al agregar encuesta', err);
@@ -74,7 +74,7 @@ export class CreatesurveyComponent implements OnInit {
     this._surveyService.deleteSurveyById(id).subscribe({
       next: (result) => {
         console.log('Escuesta agregadA correctamente!', result);
-        this.getAllSurveys();
+        this.getSurveys();
       },
       error: (err) => {
         console.error('Error al agregar cuestionario', err);

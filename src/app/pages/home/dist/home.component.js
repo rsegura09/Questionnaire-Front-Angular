@@ -10,17 +10,18 @@ exports.HomeComponent = void 0;
 // home.component.ts
 var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(personService, authService) {
+    function HomeComponent(personService, authService, router) {
         var _a;
         this.personService = personService;
         this.authService = authService;
+        this.router = router;
         this.userId = null;
         this.userInfo = null;
-        this.isAuthenticated = (((_a = sessionStorage.getItem('isAuthenticated')) === null || _a === void 0 ? void 0 : _a.toString()) == "true");
+        this.isAuthenticated = ((_a = sessionStorage.getItem('isAuthenticated')) === null || _a === void 0 ? void 0 : _a.toString()) == 'true';
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userId = this.authService.Id; // Obtén el ID del usuario del servicio de autenticación
+        this.userId = this.authService.Id;
         if (this.userId) {
             this.personService.getUserInfo(this.userId).subscribe({
                 next: function (response) {
@@ -33,6 +34,9 @@ var HomeComponent = /** @class */ (function () {
                 }
             });
         }
+    };
+    HomeComponent.prototype.navigateToSurvey = function (surveyId) {
+        sessionStorage.setItem('currentSurveyId', surveyId);
     };
     HomeComponent = __decorate([
         core_1.Component({

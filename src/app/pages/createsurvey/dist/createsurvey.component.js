@@ -26,13 +26,13 @@ var CreatesurveyComponent = /** @class */ (function () {
         });
     }
     CreatesurveyComponent.prototype.ngOnInit = function () {
-        this.getAllSurveys();
+        this.getSurveys();
     };
-    CreatesurveyComponent.prototype.getAllSurveys = function () {
+    CreatesurveyComponent.prototype.getSurveys = function () {
         var _this = this;
-        this._surveyService.getSurveys().subscribe({
+        this._surveyService.getSurveyByPersonId(this.PERSON_ID).subscribe({
             next: function (response) {
-                _this.surveyList = response.value.items;
+                _this.surveyList = response.value.surveys;
                 console.log(_this.surveyList);
             },
             error: function (error) {
@@ -56,7 +56,7 @@ var CreatesurveyComponent = /** @class */ (function () {
         this._surveyService.createSurvey(survey).subscribe({
             next: function (result) {
                 console.log('Cuestionario agregado correctamente!', result);
-                _this.getAllSurveys();
+                _this.getSurveys();
             },
             error: function (err) {
                 console.error('Error al agregar encuesta', err);
@@ -68,7 +68,7 @@ var CreatesurveyComponent = /** @class */ (function () {
         this._surveyService.deleteSurveyById(id).subscribe({
             next: function (result) {
                 console.log('Escuesta agregadA correctamente!', result);
-                _this.getAllSurveys();
+                _this.getSurveys();
             },
             error: function (err) {
                 console.error('Error al agregar cuestionario', err);
