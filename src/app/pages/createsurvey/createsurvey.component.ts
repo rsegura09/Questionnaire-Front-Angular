@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ISurvey } from 'src/app/model/survey.models';
+import { SurveyRequest } from 'src/app/model/survey.models';
 import { SurveyService } from 'src/app/service/questionnaire/survey.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,7 +48,7 @@ export class CreatesurveyComponent implements OnInit {
   submitSurvey(): void {
     const date =
       this.surveyForm.value.startDate + 'T' + this.surveyForm.value.startHour;
-    const data: ISurvey = {
+    const data: SurveyRequest = {
       personId: this.PERSON_ID,
       title: this.surveyForm.value.title!,
       description: this.surveyForm.value.description!,
@@ -58,7 +58,7 @@ export class CreatesurveyComponent implements OnInit {
     this.resetForm();
   }
 
-  addSurvey(survey: ISurvey) {
+  addSurvey(survey: SurveyRequest) {
     this._surveyService.postSurvey(survey).subscribe({
       next: (result) => {
         console.log('Cuestionario agregado correctamente!', result);

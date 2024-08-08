@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ISurvey, SurveyResponseById } from 'src/app/model/survey.models';
+import { SurveyRequest, SurveyResponseById } from 'src/app/model/survey.models';
 import { SurveyResponse } from 'src/app/model/survey.models';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class SurveyService {
 
   private baseUrl = sessionStorage.getItem('baseUrl') + `/survey`;
 
-  postSurvey(survey: ISurvey): Observable<any> {
+  postSurvey(survey: SurveyRequest): Observable<any> {
     return this.http.post<SurveyResponse>(`${this.baseUrl}`, survey);
   }
 
